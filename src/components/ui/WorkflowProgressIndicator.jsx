@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Icon from '../AppIcon.jsx';
 
 const WorkflowProgressIndicator = () => {
   const location = useLocation();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const workflowSteps = [
     {
@@ -132,9 +133,12 @@ const WorkflowProgressIndicator = () => {
           })}
         </div>
 
-        {/* Mobile Progress Indicator */}
+        {/* Mobile Progress Trigger */}
         <div className="md:hidden">
-          <div className="flex items-center justify-between">
+          <button
+            onClick={() => setIsPopupOpen(true)}
+            className="flex items-center justify-between w-full p-4 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 hover:from-primary/20 hover:to-primary/10 transition-all duration-300 shadow-medical hover:shadow-glow"
+          >
             {/* Current Step Info */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary text-primary-foreground shadow-glow animate-breathing">
@@ -172,19 +176,111 @@ const WorkflowProgressIndicator = () => {
                 );
               })}
             </div>
-          </div>
-
-          {/* Progress Bar */}
-          <div className="mt-4 w-full bg-muted/50 rounded-full h-2 shadow-medical">
-            <div 
-              className="bg-gradient-primary h-2 rounded-full transition-all duration-500 ease-out shadow-glow"
-              style={{ 
-                width: `${((currentStepIndex + 1) / workflowSteps?.length) * 100}%` 
-              }}
-            />
-          </div>
+          </button>
         </div>
       </div>
+
+      {/* Mobile Progress Popup */}
+      {isPopupOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:hidden">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsPopupOpen(false)}
+          />
+          
+          {/* Popup Content */}
+          <div className="relative w-full max-w-sm glass-card border border-border/20 shadow-glow rounded-2xl p-6 animate-in slide-in-from-bottom-4 duration-300">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsPopupOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-muted/50 hover:bg-muted transition-colors duration-200"
+            >
+              <Icon name="X" size={16} color="currentColor" />
+            </button>
+
+            {/* Header */}
+            <div className="mb-6">
+              <h3 className="text-lg font-bold text-gradient mb-2">Workflow Progress</h3>
+              <p className="text-sm text-muted-foreground">
+                Track your emergency response progress
+              </p>
+            </div>
+
+            {/* Current Step Info */}
+            <div className="flex items-center space-x-4 mb-6 p-4 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-primary text-primary-foreground shadow-glow animate-breathing">
+                <Icon 
+                  name={workflowSteps?.[currentStepIndex]?.icon} 
+                  size={20} 
+                  color="currentColor" 
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base font-bold text-gradient">
+                  {workflowSteps?.[currentStepIndex]?.label}
+                </span>
+                <span className="text-sm text-muted-foreground font-medium">
+                  {workflowSteps?.[currentStepIndex]?.description}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  Step {currentStepIndex + 1} of {workflowSteps?.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Progress Steps */}
+            <div className="space-y-4 mb-6">
+              {workflowSteps?.map((step, index) => {
+                const status = getStepStatus(index);
+                const isActive = status === 'active';
+                const isCompleted = status === 'completed';
+                
+                return (
+                  <div key={step?.id} className="flex items-center space-x-3">
+                    <div className={`
+                      flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 shadow-medical
+                      ${isCompleted ? 'bg-gradient-success text-success-foreground border-success shadow-glow-success' : 
+                        isActive ? 'bg-gradient-primary text-primary-foreground border-primary shadow-glow animate-breathing' : 
+                        'bg-muted text-muted-foreground border-muted'}
+                    `}>
+                      {isCompleted ? (
+                        <Icon name="CheckCircle" size={16} color="currentColor" />
+                      ) : (
+                        <Icon name={step?.icon} size={14} color="currentColor" />
+                      )}
+                    </div>
+                    <div className="flex flex-col flex-1">
+                      <span className={`
+                        text-sm font-medium transition-colors duration-300
+                        ${isActive ? 'text-gradient' : isCompleted ? 'text-success' : 'text-muted-foreground'}
+                      `}>
+                        {step?.label}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {step?.description}
+                      </span>
+                    </div>
+                    {isActive && (
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse-emergency" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-muted/50 rounded-full h-3 shadow-medical">
+              <div 
+                className="bg-gradient-primary h-3 rounded-full transition-all duration-500 ease-out shadow-glow"
+                style={{ 
+                  width: `${((currentStepIndex + 1) / workflowSteps?.length) * 100}%` 
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
