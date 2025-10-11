@@ -89,7 +89,11 @@ export const CTASection = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-gradient-emergency text-white border-0 text-lg px-8 py-4 h-auto group hover:shadow-glow-emergency">
+            <Button 
+              size="lg" 
+              className="bg-gradient-emergency text-white border-0 text-lg px-8 py-4 h-auto group hover:shadow-glow-emergency"
+              onClick={() => window.open("https://mgx-rddfl1mut4j.mgx.world", "_blank")}
+            >
               <Trophy className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Request Demo
             </Button>
