@@ -1,110 +1,111 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 221.2 83.2% 53.3%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --accent-glow: 142.1 76.2% 36.3%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 60%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 0 84% 60%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 217 91% 60%;
     --radius: 0.75rem;
     
-    /* Medical Theme Colors */
-    --medical-blue: 221.2 83.2% 53.3%;
-    --medical-blue-light: 221.2 83.2% 70%;
-    --medical-blue-dark: 221.2 83.2% 40%;
-    --emergency-red: 0 84.2% 60.2%;
-    --emergency-red-light: 0 84.2% 70%;
-    --emergency-red-dark: 0 84.2% 45%;
+    /* Modern Dark Theme Colors */
+    --medical-blue: 217 91% 60%;
+    --medical-blue-light: 217 91% 70%;
+    --medical-blue-dark: 217 91% 50%;
+    --emergency-red: 0 84% 60%;
+    --emergency-red-light: 0 84% 70%;
+    --emergency-red-dark: 0 84% 50%;
     --medical-white: 0 0% 100%;
-    --medical-gray: 215.4 16.3% 46.9%;
-    --medical-gray-dark: 222.2 84% 4.9%;
+    --medical-gray: 0 0% 70%;
+    --medical-gray-dark: 0 0% 20%;
     
     /* Card Glow */
-    --card-glow: 221.2 83.2% 53.3%;
+    --card-glow: 217 91% 60%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-medical: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    --gradient-emergency: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
-    --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-    --gradient-glow: linear-gradient(135deg, rgba(79, 70, 229, 0.3) 0%, rgba(124, 58, 237, 0.3) 100%);
+    --gradient-hero: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    --gradient-medical: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    --gradient-emergency: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(29, 78, 216, 0.3) 100%);
     
     /* Glow Effects */
-    --glow-medical: 0 0 20px rgba(79, 70, 229, 0.3), 0 0 40px rgba(79, 70, 229, 0.2);
-    --glow-emergency: 0 0 20px rgba(220, 38, 38, 0.3), 0 0 40px rgba(220, 38, 38, 0.2);
-    --glow-card: 0 0 30px rgba(79, 70, 229, 0.1), 0 0 60px rgba(79, 70, 229, 0.05);
-    --glow-intense: 0 0 40px rgba(79, 70, 229, 0.4), 0 0 80px rgba(79, 70, 229, 0.2), 0 0 120px rgba(79, 70, 229, 0.1);
+    --glow-medical: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+    --glow-emergency: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2);
+    --glow-card: 0 0 30px rgba(59, 130, 246, 0.2), 0 0 60px rgba(59, 130, 246, 0.1);
+    --glow-intense: 0 0 40px rgba(59, 130, 246, 0.5), 0 0 80px rgba(59, 130, 246, 0.3), 0 0 120px rgba(59, 130, 246, 0.1);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --primary-glow: 217.2 91.2% 59.8%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 142.1 70.6% 45.3%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 60%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 0 84% 60%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 217 91% 60%;
     
-    /* Medical Theme Colors - Dark Mode */
-    --medical-blue: 217.2 91.2% 59.8%;
-    --medical-blue-light: 217.2 91.2% 70%;
-    --medical-blue-dark: 217.2 91.2% 45%;
-    --emergency-red: 0 62.8% 30.6%;
-    --emergency-red-light: 0 62.8% 40%;
-    --emergency-red-dark: 0 62.8% 20%;
-    --medical-white: 210 40% 98%;
-    --medical-gray: 215 20.2% 65.1%;
-    --medical-gray-dark: 222.2 84% 4.9%;
+    /* Modern Dark Theme Colors */
+    --medical-blue: 217 91% 60%;
+    --medical-blue-light: 217 91% 70%;
+    --medical-blue-dark: 217 91% 50%;
+    --emergency-red: 0 84% 60%;
+    --emergency-red-light: 0 84% 70%;
+    --emergency-red-dark: 0 84% 50%;
+    --medical-white: 0 0% 100%;
+    --medical-gray: 0 0% 70%;
+    --medical-gray-dark: 0 0% 20%;
     
-    /* Card Glow - Dark Mode */
-    --card-glow: 217.2 91.2% 59.8%;
+    /* Card Glow */
+    --card-glow: 217 91% 60%;
     
-    /* Gradients - Dark Mode */
+    /* Gradients */
     --gradient-hero: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-    --gradient-medical: linear-gradient(135deg, #312e81 0%, #581c87 100%);
-    --gradient-emergency: linear-gradient(135deg, #7f1d1d 0%, #92400e 100%);
+    --gradient-medical: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    --gradient-emergency: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
     --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-    --gradient-glow: linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(29, 78, 216, 0.3) 100%);
     
-    /* Glow Effects - Dark Mode */
-    --glow-medical: 0 0 30px rgba(79, 70, 229, 0.4), 0 0 60px rgba(79, 70, 229, 0.2);
-    --glow-emergency: 0 0 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.2);
-    --glow-card: 0 0 40px rgba(79, 70, 229, 0.2), 0 0 80px rgba(79, 70, 229, 0.1);
-    --glow-intense: 0 0 60px rgba(79, 70, 229, 0.5), 0 0 120px rgba(79, 70, 229, 0.3), 0 0 180px rgba(79, 70, 229, 0.1);
+    /* Glow Effects */
+    --glow-medical: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+    --glow-emergency: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2);
+    --glow-card: 0 0 30px rgba(59, 130, 246, 0.2), 0 0 60px rgba(59, 130, 246, 0.1);
+    --glow-intense: 0 0 40px rgba(59, 130, 246, 0.5), 0 0 80px rgba(59, 130, 246, 0.3), 0 0 120px rgba(59, 130, 246, 0.1);
   }
 }
 
@@ -115,7 +116,7 @@
   
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
