@@ -19,6 +19,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { LiveDashboard } from "@/components/LiveDashboard";
 import smartHospital from "@/assets/smart-hospital.jpg";
 import aiTrafficSystem from "@/assets/ai-traffic-system.jpg";
+import smartAmbulance from "@/assets/smart-ambulance.jpg";
 
 const solutions = [
   {
@@ -68,7 +69,7 @@ const solutions = [
       "Road condition monitoring",
       "ETA prediction accuracy"
     ],
-    image: null,
+    image: smartAmbulance,
     color: "accent",
     delay: 200
   },
@@ -230,14 +231,30 @@ export const SolutionSection = () => {
                   {/* Content */}
                   <div className={`space-y-8 ${isEven ? '' : 'lg:order-2'}`}>
                     <div className="flex items-center gap-6">
-                      <div className={`inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-${solution.color}/20 transition-all duration-500 hover-lift perspective transform-3d ${isActive ? `shadow-glow-medical bg-${solution.color}/30 scale-110` : 'hover:scale-105'}`}>
-                        <Icon className={`h-10 w-10 text-${solution.color} transition-transform duration-300 ${isActive ? 'scale-110 animate-pulse' : ''}`} />
+                      <div className={`inline-flex items-center justify-center w-20 h-20 rounded-3xl transition-all duration-500 hover-lift perspective transform-3d ${
+                        solution.color === 'medical-blue' ? 'bg-medical-blue/20' :
+                        solution.color === 'emergency-red' ? 'bg-emergency-red/20' :
+                        solution.color === 'accent' ? 'bg-accent/20' : 'bg-medical-blue/20'
+                      } ${isActive ? `shadow-glow-medical scale-110 ${
+                        solution.color === 'medical-blue' ? 'bg-medical-blue/30' :
+                        solution.color === 'emergency-red' ? 'bg-emergency-red/30' :
+                        solution.color === 'accent' ? 'bg-accent/30' : 'bg-medical-blue/30'
+                      }` : 'hover:scale-105'}`}>
+                        <Icon className={`h-10 w-10 transition-transform duration-300 ${
+                          solution.color === 'medical-blue' ? 'text-medical-blue' :
+                          solution.color === 'emergency-red' ? 'text-emergency-red' :
+                          solution.color === 'accent' ? 'text-accent' : 'text-medical-blue'
+                        } ${isActive ? 'scale-110 animate-pulse' : ''}`} />
                       </div>
                       <div>
                         <h3 className="text-4xl font-black text-foreground text-shadow">
                           {solution.title}
                         </h3>
-                        <p className={`text-xl font-semibold text-${solution.color} text-glow`}>
+                        <p className={`text-xl font-semibold text-glow ${
+                          solution.color === 'medical-blue' ? 'text-medical-blue' :
+                          solution.color === 'emergency-red' ? 'text-emergency-red' :
+                          solution.color === 'accent' ? 'text-accent' : 'text-medical-blue'
+                        }`}>
                           {solution.subtitle}
                         </p>
                       </div>
@@ -256,7 +273,11 @@ export const SolutionSection = () => {
                           }`}
                           style={{ transitionDelay: `${featureIndex * 100}ms` }}
                         >
-                          <CheckCircle className={`h-6 w-6 text-${solution.color} flex-shrink-0 animate-pulse`} />
+                          <CheckCircle className={`h-6 w-6 flex-shrink-0 animate-pulse ${
+                            solution.color === 'medical-blue' ? 'text-medical-blue' :
+                            solution.color === 'emergency-red' ? 'text-emergency-red' :
+                            solution.color === 'accent' ? 'text-accent' : 'text-medical-blue'
+                          }`} />
                           <span className="text-foreground font-semibold text-lg">{feature}</span>
                         </div>
                       ))}
@@ -288,11 +309,19 @@ export const SolutionSection = () => {
                           alt={solution.title}
                           className="w-full h-96 object-cover transition-transform duration-500 hover:scale-110"
                         />
-                        <div className={`absolute inset-0 bg-gradient-to-t from-${solution.color}/30 via-transparent to-transparent`} />
+                        <div className={`absolute inset-0 bg-gradient-to-t via-transparent to-transparent ${
+                          solution.color === 'medical-blue' ? 'from-medical-blue/30' :
+                          solution.color === 'emergency-red' ? 'from-emergency-red/30' :
+                          solution.color === 'accent' ? 'from-accent/30' : 'from-medical-blue/30'
+                        }`} />
                         <div className="absolute inset-0 bg-gradient-to-br from-medical-blue/10 to-emergency-red/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                       </div>
                     ) : (
-                      <div className={`medical-card p-16 h-96 flex items-center justify-center bg-gradient-to-br from-${solution.color}/15 to-${solution.color}/5 transition-all duration-700 hover-lift animated-border ${isActive ? 'shadow-glow-intense scale-105' : 'hover:scale-105'}`}>
+                      <div className={`medical-card p-16 h-96 flex items-center justify-center bg-gradient-to-br transition-all duration-700 hover-lift animated-border overflow-hidden ${
+                        solution.color === 'medical-blue' ? 'from-medical-blue/15 to-medical-blue/5' :
+                        solution.color === 'emergency-red' ? 'from-emergency-red/15 to-emergency-red/5' :
+                        solution.color === 'accent' ? 'from-accent/15 to-accent/5' : 'from-medical-blue/15 to-medical-blue/5'
+                      } ${isActive ? 'shadow-glow-intense scale-105' : 'hover:scale-105'}`}>
                         {solution.title === "IoT Patient Monitoring" ? (
                           <div className="w-full h-full">
                             <LiveDashboard />
@@ -300,10 +329,22 @@ export const SolutionSection = () => {
                         ) : (
                           <div className="text-center">
                             <div className="relative">
-                              <Icon className={`h-32 w-32 text-${solution.color} mx-auto mb-6 transition-transform duration-500 ${isActive ? 'scale-110 animate-float' : 'hover:scale-110'}`} />
-                              <div className={`absolute inset-0 bg-gradient-to-r from-${solution.color}/20 to-transparent rounded-full blur-2xl`} />
+                              <Icon className={`h-32 w-32 mx-auto mb-6 transition-transform duration-500 ${
+                                solution.color === 'medical-blue' ? 'text-medical-blue' :
+                                solution.color === 'emergency-red' ? 'text-emergency-red' :
+                                solution.color === 'accent' ? 'text-accent' : 'text-medical-blue'
+                              } ${isActive ? 'scale-110 animate-float' : 'hover:scale-110'}`} />
+                              <div className={`absolute inset-0 bg-gradient-to-r to-transparent rounded-full blur-2xl ${
+                                solution.color === 'medical-blue' ? 'from-medical-blue/20' :
+                                solution.color === 'emergency-red' ? 'from-emergency-red/20' :
+                                solution.color === 'accent' ? 'from-accent/20' : 'from-medical-blue/20'
+                              }`} />
                             </div>
-                            <p className={`text-xl font-bold text-${solution.color} text-glow`}>
+                            <p className={`text-xl font-bold text-glow ${
+                              solution.color === 'medical-blue' ? 'text-medical-blue' :
+                              solution.color === 'emergency-red' ? 'text-emergency-red' :
+                              solution.color === 'accent' ? 'text-accent' : 'text-medical-blue'
+                            }`}>
                               {solution.subtitle}
                             </p>
                           </div>

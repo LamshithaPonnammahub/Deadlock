@@ -13,7 +13,7 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero bg-pattern">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -53,16 +53,16 @@ export const HeroSection = () => {
 
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tight text-shadow">
-            <span className="hero-text text-reveal">
-              <span style={{ animationDelay: '0.2s' }}>AI-Powered</span>
+            <span className="text-medical-blue">
+              AI-Powered
             </span>
             <br />
-            <span className="text-medical-white text-reveal">
-              <span style={{ animationDelay: '0.4s' }}>Smart Ambulance</span>
+            <span className="text-white">
+              Smart Ambulance
             </span>
             <br />
-            <span className="text-medical-blue text-reveal">
-              <span style={{ animationDelay: '0.6s' }}>System</span>
+            <span className="text-medical-blue">
+              System
             </span>
           </h1>
 
