@@ -179,22 +179,32 @@ export const SolutionSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-muted/30 to-background">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} className="py-24 bg-gradient-to-b from-muted/30 to-background bg-pattern relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-medical-blue/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-emergency-red/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-medical-blue/20 border border-medical-blue/30 rounded-full text-medical-blue mb-6 medical-glow">
-            <Zap className="h-4 w-4" />
-            <span className="text-sm font-semibold">AI-POWERED SOLUTION</span>
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-medical-blue/20 border border-medical-blue/30 rounded-full text-medical-blue mb-8 medical-glow hover-lift animated-border backdrop-blur-sm">
+            <Zap className="h-5 w-5 animate-pulse" />
+            <span className="text-sm font-bold tracking-wide">AI-POWERED SOLUTION</span>
+            <div className="w-2 h-2 bg-medical-blue rounded-full animate-pulse" />
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-black mb-6">
-            <span className="text-medical-blue">Revolutionary</span> Emergency Response
+          <h2 className="text-5xl md:text-7xl font-black mb-8 text-shadow">
+            <span className="hero-text">Revolutionary</span> 
+            <br />
+            <span className="text-medical-blue">Emergency Response</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Our comprehensive AI and IoT solution transforms every aspect of emergency response, 
-            from detection to delivery.
+            from detection to delivery with <span className="text-medical-blue font-semibold">cutting-edge technology</span>.
           </p>
         </div>
 
@@ -216,44 +226,44 @@ export const SolutionSection = () => {
                 }`}
                 style={{ transitionDelay: `${solution.delay}ms` }}
               >
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isEven ? '' : 'lg:grid-flow-col-reverse'}`}>
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${isEven ? '' : 'lg:grid-flow-col-reverse'}`}>
                   {/* Content */}
-                  <div className={`space-y-6 ${isEven ? '' : 'lg:order-2'}`}>
-                    <div className="flex items-center gap-4">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-${solution.color}/20 transition-all duration-500 ${isActive ? `shadow-glow-medical bg-${solution.color}/30` : ''}`}>
-                        <Icon className={`h-8 w-8 text-${solution.color} transition-transform duration-300 ${isActive ? 'scale-110' : ''}`} />
+                  <div className={`space-y-8 ${isEven ? '' : 'lg:order-2'}`}>
+                    <div className="flex items-center gap-6">
+                      <div className={`inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-${solution.color}/20 transition-all duration-500 hover-lift perspective transform-3d ${isActive ? `shadow-glow-medical bg-${solution.color}/30 scale-110` : 'hover:scale-105'}`}>
+                        <Icon className={`h-10 w-10 text-${solution.color} transition-transform duration-300 ${isActive ? 'scale-110 animate-pulse' : ''}`} />
                       </div>
                       <div>
-                        <h3 className="text-3xl font-black text-foreground">
+                        <h3 className="text-4xl font-black text-foreground text-shadow">
                           {solution.title}
                         </h3>
-                        <p className={`text-lg font-semibold text-${solution.color}`}>
+                        <p className={`text-xl font-semibold text-${solution.color} text-glow`}>
                           {solution.subtitle}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-xl text-muted-foreground leading-relaxed">
                       {solution.description}
                     </p>
 
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {solution.features.map((feature, featureIndex) => (
                         <div 
                           key={featureIndex} 
-                          className={`flex items-center gap-3 transition-all duration-500 ${
-                            isActive ? 'translate-x-2' : ''
+                          className={`flex items-center gap-4 transition-all duration-500 hover-lift ${
+                            isActive ? 'translate-x-3' : ''
                           }`}
                           style={{ transitionDelay: `${featureIndex * 100}ms` }}
                         >
-                          <CheckCircle className={`h-5 w-5 text-${solution.color} flex-shrink-0`} />
-                          <span className="text-foreground font-medium">{feature}</span>
+                          <CheckCircle className={`h-6 w-6 text-${solution.color} flex-shrink-0 animate-pulse`} />
+                          <span className="text-foreground font-semibold text-lg">{feature}</span>
                         </div>
                       ))}
                     </div>
 
                     <Button 
-                      className={`bg-gradient-${solution.color === 'medical-blue' ? 'medical' : 'emergency'} text-white border-0 group hover:shadow-glow-medical transition-all duration-300`}
+                      className={`bg-gradient-${solution.color === 'medical-blue' ? 'medical' : 'emergency'} text-white border-0 group hover:shadow-glow-medical transition-all duration-300 hover-lift shimmer rounded-full px-8 py-4 text-lg`}
                       size="lg"
                       onClick={() => {
                         if (solution.title === "AI Call Assistant") {
@@ -264,33 +274,41 @@ export const SolutionSection = () => {
                       }}
                     >
                       Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                     </Button>
                   </div>
 
                   {/* Image/Visual */}
-                  <div className={`${isEven ? '' : 'lg:order-1'} relative`}>
+                  <div className={`${isEven ? '' : 'lg:order-1'} relative perspective transform-3d`}>
                     {solution.image ? (
-                      <div className={`medical-card overflow-hidden transition-all duration-700 ${isActive ? 'shadow-glow-intense scale-105' : ''}`}>
+                      <div className={`medical-card overflow-hidden transition-all duration-700 hover-lift animated-border ${isActive ? 'shadow-glow-intense scale-105' : 'hover:scale-105'}`}>
                         <img 
                           src={solution.image}
                           alt={solution.title}
-                          className="w-full h-80 object-cover"
+                          className="w-full h-96 object-cover transition-transform duration-500 hover:scale-110"
                         />
-                        <div className={`absolute inset-0 bg-gradient-to-t from-${solution.color}/20 to-transparent`} />
+                        <div className={`absolute inset-0 bg-gradient-to-t from-${solution.color}/30 via-transparent to-transparent`} />
+                        <div className="absolute inset-0 bg-gradient-to-br from-medical-blue/10 to-emergency-red/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                       </div>
                     ) : (
-                      <div className={`medical-card p-12 h-80 flex items-center justify-center bg-gradient-to-br from-${solution.color}/10 to-${solution.color}/5 transition-all duration-700 ${isActive ? 'shadow-glow-intense scale-105' : ''}`}>
+                      <div className={`medical-card p-16 h-96 flex items-center justify-center bg-gradient-to-br from-${solution.color}/15 to-${solution.color}/5 transition-all duration-700 hover-lift animated-border ${isActive ? 'shadow-glow-intense scale-105' : 'hover:scale-105'}`}>
                         {solution.title === "IoT Patient Monitoring" ? (
-                          <LiveDashboard />
+                          <div className="w-full h-full">
+                            <LiveDashboard />
+                          </div>
                         ) : (
                           <div className="text-center">
-                            <Icon className={`h-24 w-24 text-${solution.color} mx-auto mb-4 transition-transform duration-500 ${isActive ? 'scale-110 animate-float' : ''}`} />
-                            <p className={`text-lg font-semibold text-${solution.color}`}>
+                            <div className="relative">
+                              <Icon className={`h-32 w-32 text-${solution.color} mx-auto mb-6 transition-transform duration-500 ${isActive ? 'scale-110 animate-float' : 'hover:scale-110'}`} />
+                              <div className={`absolute inset-0 bg-gradient-to-r from-${solution.color}/20 to-transparent rounded-full blur-2xl`} />
+                            </div>
+                            <p className={`text-xl font-bold text-${solution.color} text-glow`}>
                               {solution.subtitle}
                             </p>
                           </div>
                         )}
+                        <div className="absolute inset-0 bg-gradient-to-br from-medical-blue/5 to-emergency-red/5 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
                       </div>
                     )}
                   </div>
